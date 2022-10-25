@@ -36,6 +36,7 @@ class plot:
 			i+=1
 
 		#Create y_bounds for plotting then reset array to nil--------------------
+
 		y_bounds = (max(array)[1],min(array)[1])
 		array = []
 		if y_bounds[0]<1:
@@ -52,7 +53,7 @@ class plot:
 			array.append((x,y))
 			i+=1
 		#print(array)
-		color = ( 255*( min( max( (array[9][1]/y_bounds[0], 0) ), 1) ) , 255*(1 - min(max( (array[9][1]/y_bounds[0], 0) ), 1 ) ) , 0)
+		color = ( 255, 255, 0 , 0)
 		#print(color)
 		#Draw plotted lines------------------------------------------------------
 		pygame.draw.lines(graph,color,False,array)
