@@ -124,51 +124,9 @@ while True:
 	co2_graph = plot(data,(150,115),'co2',(300,0),800,(0,0,0),(round(count),round(count+10)))
 	l_graph = plot(data,(150,115),'light',(450,0),25,(0,0,0),(round(count),round(count+10)))
 
-	#text = font.render("Iteration "+str(t), False, (0,255,0))
-	#screen.blit(text,(50,25))
-	#text = font.render("CO2 "+str(math.floor(data.co2[t]))+ " ppm", False, (0,255,0))
-	#screen.blit(text,(275,25))
-	#text = font.render("Temp "+str(math.floor(data.temperature[t]))+" C", False, (0,255,0))
-	#screen.blit(text,(525,25))
 
-	#text = font.render("RH "+str(math.floor(data.humidity[t]))+" %", False, (0,255,0))
-	#screen.blit(text,(50,60))
-	#text = font.render("Light "+str(math.floor(data.light[t]))+" lux", False, (0,255,0))
-	#screen.blit(text,(275,60))
-	#text = font.render(data.time[t], False, (0,255,0))
-	#screen.blit(text,(50,100))
-	if warning>30:
-		if touch:
-			warning = 0
-			touch=0
-			accept = 15
-			yes+=1
-		else:
-			text = font.render("Do you have a moment? YES | NO", False, (0,0,255))
-			screen.blit(text,(150,200))
-	else:
-		if accept>0:
-			accept-=0.1*dt
-			text = bigfont.render("Ok!", False, (0,0,255))
-			screen.blit(text,(400,200))
-		if accept<0.1:
-			warning+=0.1*dt
-			if(data.light[t]<5):
-				#text = bigfont.render("! Low light !", False, 'Red')
-				#screen.blit(text,(175,200))
-				warning+=0.1*dt
-			elif(data.temperature[t]>26):
-				#text = bigfont.render("! High Temp !", False, 'Red')
-				#screen.blit(text,(175,200))
-				warning+=0.1*dt
-			elif(data.co2[t]>500):
-				#text = bigfont.render("! High CO2 !", False, 'Red')
-				#screen.blit(text,(175,200))
-				warning+=0.1*dt
-			elif warning>0:
-				warning-=0.1*dt
-			elif warning<0:
-				warning=0
+
+
 	text = font.render("Warning " + str(math.floor(warning)), False, (0,255,0))
 	screen.blit(text,(50,360))
 
