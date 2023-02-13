@@ -2,11 +2,11 @@ import math
 import random
 import pandas as pd
 import pygame
-
+import time
 #Sensor Acquisition object
-class sensor:
+class Sensor:
 	def __init__(self):
-		self.t_sen = 21
+		self.t_sen = 25
 		self.rh_sen = 55
 		self.p_sen = 1000
 		self.co2_sen = 450
@@ -18,13 +18,16 @@ class sensor:
 		self.key=False
 		#Initialize sensors
 
-	def dummy_sensor_read(self,occupied):
+	def dummy_sensor_read(self):
 		#Collect sensor data
 		#Semi Random sensor generation for testing
 		#Testing Data
+		#time.sleep(1) # Simulate I/O Delay
 		self.t_sen += 0.05*random.randrange(-1,1)
-		if self.t_sen<22:
-			self.t_sen=22
+		if self.t_sen<18:
+			self.t_sen=18
+		elif self.t_sen>25:
+			self.t_sen=24
 		self.rh_sen += 0.1*random.randrange(-1,1)
 		if self.rh_sen<20:
 			self.rh_sen=20
@@ -39,18 +42,8 @@ class sensor:
 		if self.light<0:
 			self.light=0
 
-
 		self.audio = random.randrange(10,20)
-		self.s_data = pd.DataFrame({
-			"Temperature":[self.t_sen],
-			"Humidity":[self.rh_sen],
-			"Pressure":[self.p_sen],
-			"CO2":[self.co2_sen],
-			"Light":[self.light],
-			"PM25":[self.pm],
-			"Audio":[self.audio],
-			"Occupied":[occupied]
-			})
+		return self.update_df()
 		#print(self.s_data)
 
 	def control_sensor(self,dt,keys):
@@ -92,7 +85,10 @@ class sensor:
 				self.light-=1*dt
 			else:
 				self.audio-=0.1*dt
-
+		return self.update_df()
+		
+		#print(self.s_data)
+	def update_df(self):
 		self.s_data = pd.DataFrame({
 			"Temperature":[self.t_sen],
 			"Humidity":[self.rh_sen],
@@ -100,7 +96,6 @@ class sensor:
 			"CO2":[self.co2_sen],
 			"Light":[self.light],
 			"PM25":[self.pm],
-			"Audio":[self.audio],
-			"Occupied":[]
+			"Audio":[self.audio]
 			})
-		#print(self.s_data)
+		return self.s_data

@@ -1,0 +1,2 @@
+,Temperature,Humidity,Pressure,CO2,Light,PM25,Audio,temp_size,temp_offset,hum_size,hum_offset,light,sound,co2,pmlow,pmhigh,response,hours,minutes
+0,21.44999999999995,47.19999999999989,999.9290000000017,374,0,0.0,14,4,20,25,40,150,30,2000,12,35,1,0,2
