@@ -45,6 +45,7 @@ class plot:
 
 		y_bounds = (max(array)[1],min(array)[1])
 		array = []
+		#print(y_bounds[0])
 		if y_bounds[0]<1:
 			y_bounds=(1,1)
 		i=self.x_bounds[0]

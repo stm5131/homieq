@@ -103,13 +103,13 @@ while(i<200):
 	#Run logical and Datakeeping clock for time
 	timer.update_time(dt)
 
-	agent.update(sensor.dummy_sensor_read())
+	agent.update(sensor.sensor_read())
 	agent.comfort_check()
 	agent.calc()
 	i+=dt
 	#print(sensor.s_data)
 	dark.fill((255,255,255))
-	screen.blit(pygame.transform.scale(dark,(i*1.5,50)),(500,300))
+	screen.blit(pygame.transform.scale(dark,(int(i*1.5),50)),(500,300))
 	pygame.display.update()
 #print(agent.sensor_metrics)
 
@@ -127,7 +127,9 @@ while(True):
 
 	#If timer lapses, then logic performs its tasks once
 	if(timer.lapsed):
-		agent.update(sensor.dummy_sensor_read())
+		agent.update(sensor.sensor_read())
+		time.sleep(0.25)
+		print("sleepy")
 		agent.calc()
 		agent.comfort_check()
 		
